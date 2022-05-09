@@ -45,7 +45,9 @@
     }
   },
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-reload": "^2.0.0-alpha.1",
+    "electron-squirrel-startup": "^1.0.0",
+    "seco-file": "^1.2.0"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.63",

@@ -5,3 +5,8 @@ body {
   max-width: 38rem;
   padding: 2rem;
 }
+
+.containDiv {
+  width: 100vw;
+  height: 100vh;
+}
