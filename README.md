@@ -33,7 +33,7 @@ For support, email fake@fake.com or join our Slack channel.
 
 **Client:** Electrum, HTML, CSS, npm, JS
 
-**Server:** Node
+**Server:** Node, Linux
 
 
 ## Run Locally
