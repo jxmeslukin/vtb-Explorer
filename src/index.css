@@ -2,7 +2,22 @@ html {
   scroll-behavior: smooth;
 }
 
-.containDiv {
-  width: 100vw;
-  height: 100vh;
+.dark-theme, 
+.dark-theme section,
+.dark-theme .tabs,
+.dark-theme .tile,
+.dark-theme select {
+  background-color: #242424;
 }
+.dark-theme .icon,
+.dark-theme span,
+.dark-theme p, 
+.dark-theme h1,
+.dark-theme h2,
+.dark-theme strong,
+.dark-theme select {
+  color: white;
+  
+}
+
+

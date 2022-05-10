@@ -13,7 +13,7 @@
       src="https://kit.fontawesome.com/40b81531b5.js"
       crossorigin="anonymous"
     ></script>
-    <script defer src="js/render.js"></script>
+    <script src="render.js"></script>
     <title>vtb_explorer</title>
   </head>
   <body>
@@ -43,30 +43,27 @@
                 <span>Site</span>
               </a>
             </li>
+            <li>
+              <a id="toggle" onclick="toggleContrast()">
+                <span class="icon is-small"
+                  ><i class="fa-solid fa-circle-half-stroke"></i
+                ></span>
+                <span>Mode</span>
+              </a>
+            </li>
           </ul>
         </div>
-      <section id="explorer" class="section">
+      <section id="explorer" class="section" style="padding-top: 0.1rem;">
       <div class="tile is-ancestor">
         <div class="tile is-4 is-vertical is-parent">
           <div id="" class="tile is-child box">
             <p class="title">Blockchain</p>
             
-            <div class="dropdown is-hoverable">
-              <div class="dropdown-trigger">
-                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                  <span>Bitcoin</span>
-                  <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                <div class="dropdown-content">
-                  <div class="dropdown-item">
-                    <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
-                  </div>
-                </div>
-              </div>
+            <div class="select">
+              <select>
+                <option>Select dropdown</option>
+                <option>With options</option>
+              </select>
             </div>
 
 
