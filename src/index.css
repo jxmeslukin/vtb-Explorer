@@ -2,6 +2,7 @@ html {
   scroll-behavior: smooth;
 }
 
+
 .dark-theme, 
 .dark-theme section,
 .dark-theme .tabs,
@@ -17,7 +18,6 @@ html {
 .dark-theme strong,
 .dark-theme select {
   color: white;
-  
 }
 
 

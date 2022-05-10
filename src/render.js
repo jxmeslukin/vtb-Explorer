@@ -8,4 +8,9 @@ function toggleContrast() {
     else {
       document.body.classList.remove("dark-theme")
     }
-  }
+}
+
+
+
+// const response = await fetch(api)
+// const data = await response.json()
