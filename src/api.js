@@ -1,3 +1,8 @@
+var hashInput = document.getElementById("hashInput")
+var timeInput = document.getElementById("timeInput")
+var btcAmtInput = document.getElementById("btcAmtInput")
+var audAmtInput = document.getElementById("audAmtInput")
+
 // calling blockchain.com api to fetch real time info
 
 let socket = new WebSocket('wss://ws.blockchain.info/inv');
@@ -28,9 +33,15 @@ function jsonManipulate(data) {
         sum += (value[i].value)
     }
     var btc = sum / 100000000
-    var valSum = value.reduce((total, n) => total + n, 0)
-    currencyConvert(btc);
-    timeConvert(time);
+    var aud = currencyConvert(btc);
+    var date = timeConvert(time);
+
+    hashInput.innerHTML = hash
+    timeInput.innerHTML = date
+    btcAmtInput.innerHTML = btc
+    audAmtInput.innerHTML = aud
+
+
 }
 
 function timeConvert(time) {
@@ -38,11 +49,23 @@ function timeConvert(time) {
     var hours = date.getHours();
     var mins = "0" + date.getMinutes();
     var formattedTime = hours + ":" + mins.slice(-2)
-    console.log(formattedTime)
+    return formattedTime;
 }
 
-function currencyConvert(btc) {
+var formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'AUD'
+})
 
+function currencyConvert(btc) {
+    $.getJSON("https://api.coindesk.com/v1/bpi/currentprice/aud.json",
+    function(data) {
+        var origAmt = btc;
+        var exchange = parseInt(data.bpi.AUD.rate_float);
+        let amount = (origAmt * exchange)
+        var round = formatter.format(Math.round(amount))
+        
+    })
 }
 
 let blockSocket = new WebSocket('wss://ws.blockchain.info/inv');
