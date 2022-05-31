@@ -1,109 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
-    />
-    <script src="api.js"></script>
-    <link rel="stylesheet" href="index.css">
-    <script
-      src="https://kit.fontawesome.com/40b81531b5.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="render.js"></script>
-    <title>vtb_explorer</title>
-  </head>
-  <body>
-        <div class="tabs is-centered" id="header">
-          <ul>
-            <li class="is-active">
-              <a href="#explorer">
-                <span class="icon is-small"
-                  ><i class="fa-solid fa-cubes"></i
-                ></span>
-                <span>Explorer</span>
-              </a>
-            </li>
-            <li>
-              <a href="#about">
-                <span class="icon is-small"
-                  ><i class="fa-solid fa-circle-info"></i
-                ></span>
-                <span>About</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://visualisetheblockchain.com" target="_blank">
-                <span class="icon is-small"
-                  ><i class="fa-solid fa-window-restore"></i
-                ></span>
-                <span>Site</span>
-              </a>
-            </li>
-            <li>
-              <a id="toggle" onclick="toggleContrast()">
-                <span class="icon is-small"
-                  ><i class="fa-solid fa-circle-half-stroke"></i
-                ></span>
-                <span>Mode</span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      <section id="explorer" class="section" style="padding-top: 0.1rem;">
-      <div class="tile is-ancestor">
-        <div class="tile is-4 is-vertical is-parent">
-          <div id="" class="tile is-child box">
-            <p class="title">Blockchain</p>
-            
-            <div class="select">
-              <select>
-                <option>Bitcoin</option>
-                <option>Ethereum</option>
-              </select>
-            </div>
-            <br>
-            <div class="search">
 
-            </div>
-              
-            
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+  <script src="api.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <script src="https://kit.fontawesome.com/40b81531b5.js" crossorigin="anonymous"></script>
+  <script src="render.js"></script>
+  <title>vtb_explorer</title>
+</head>
 
-            <br><br><br>
+<body>
+  <div class="tabs is-centered" id="header">
+    <ul>
+      <li class="is-active">
+        <a href="#explorer">
+          <span class="icon is-small"><i class="fa-solid fa-cubes"></i></span>
+          <span>Explorer</span>
+        </a>
+      </li>
+      <li>
+        <a href="#about">
+          <span class="icon is-small"><i class="fa-solid fa-circle-info"></i></span>
+          <span>About</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://visualisetheblockchain.com" target="_blank">
+          <span class="icon is-small"><i class="fa-solid fa-window-restore"></i></span>
+          <span>Site</span>
+        </a>
+      </li>
+      <li>
+        <a id="toggle" onclick="toggleContrast()">
+          <span class="icon is-small"><i class="fa-solid fa-circle-half-stroke"></i></span>
+          <span>Mode</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <section id="explorer" class="section" style="padding-top: 0.1rem;">
+    <div class="tile is-ancestor">
+      <div class="tile is-4 is-vertical is-parent">
+        <div id="" class="tile is-child box">
+          <p class="title">Blockchain</p>
+
+          <div class="select">
+            <select>
+              <option>Bitcoin</option>
+              <option>Ethereum</option>
+            </select>
           </div>
-          <div class="tile is-child box">
-            <p class="title">Info</p>
-            <p id="chainData">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-              ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
-              non massa sem. Etiam finibus odio quis feugiat facilisis.
-            </p>
+          <br>
+          <div class="search">
+
           </div>
+
+
+
+          <br><br><br>
         </div>
-        <div class="tile is-parent">
-          <div class="tile is-child box">
-            <p class="title">Real-time data</p>
-            <table class="table">
-              <thead>
-                <th><abbr title="Amount ($AUD)">Amt</abbr></th>
-              </thead>
-            </table>
-          </div>
+        <div class="tile is-child box">
+          <p class="title">Info</p>
+          <p id="chainData">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
+            ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
+            non massa sem. Etiam finibus odio quis feugiat facilisis.
+          </p>
         </div>
       </div>
-    </section>
-    <section class="section" id="about">
-        <h1 class="title">About</h1>
-        <h2 class="subtitle">
-          This application was created as part of a HSC project by <strong>James Lukin</strong>, updates will continue to be rolled-out.
-        </h2>
-        <br>
-        <p>Electron is the main framework used to create this web-app.</p>
-      </section>
-      
-  </body>
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <p class="title">Real-time transactions</p>
+          <table class="table is-fullwidth is-striped">
+            <thead>
+              <th>Hash</th>
+              <th>Time</th>
+              <th><abbr title="Amount in BTC">Amt-BTC</abbr></th>
+              <th><abbr title="Amount ($AUD)">Amt-$</abbr></th>
+              <th></th>
+            </thead>
+            <tbody>
+              <tr>
+                <th>69</th>
+                <td>19:30</td>
+                <td>Joe</td>
+                <td>$45</td>
+              </tr>
+              <tr>
+                <th>penis</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <hr width="1" size="500">
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <div class="tile is-child box">
+          <p class="title">Real-time blocks</p>
+          <table class="table is-fullwidth is-striped">
+            <thead>
+              <tr>
+              <th>Height</th>
+              <th>Mined</th>
+              <th>Miner</th>
+              <th>Size</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>69</th>
+                <td>19:30</td>
+                <td>Joe</td>
+                <td>$45</td>
+              </tr>
+              <tr>
+                <th>penis</th>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <hr width="1" size="500">
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="about">
+    <h1 class="title">About</h1>
+    <h2 class="subtitle">
+      This application was created as part of a HSC project by <strong>James Lukin</strong>, updates will continue to be
+      rolled-out.
+    </h2>
+    <p><i>Electron is the main framework used to create this web-app.</i></p>
+  </section>
+
+</body>
+
 </html>
