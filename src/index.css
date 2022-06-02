@@ -7,7 +7,8 @@ html {
 .dark-theme section,
 .dark-theme .tabs,
 .dark-theme .tile,
-.dark-theme select {
+.dark-theme select,
+.dark-theme table {
   background-color: #242424;
 }
 .dark-theme .icon,
@@ -16,7 +17,11 @@ html {
 .dark-theme h1,
 .dark-theme h2,
 .dark-theme strong,
-.dark-theme select {
+.dark-theme select,
+.dark-theme th,
+.dark-theme td,
+.dark-theme abbr,
+.dark-theme table thead th {
   color: white;
 }
 
@@ -30,10 +35,19 @@ th
  overflow: hidden;
  text-overflow: ellipsis;
  white-space: nowrap;
+ max-width: 100px;
 }
 
+/* td {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+} */
+
 table {
-  table-layout: fixed;
+  table-layout: auto;
   width: 100%;
   display: table;
+  max-width: 500px;
+  border-collapse: collapse;
 }
