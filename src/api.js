@@ -1,4 +1,3 @@
-
 var hashInput = document.getElementById("hashInput")
 var timeInput = document.getElementById("timeInput")
 var btcAmtInput = document.getElementById("btcAmtInput")
@@ -29,7 +28,7 @@ function jsonManipulate(data) {
     var valLeng = value.length
     var sum = 0;
 
-    for(i=0; i < valLeng; i++) {
+    for (i = 0; i < valLeng; i++) {
         sum += (value[i].value)
     }
     var btc = sum / 100000000
@@ -76,32 +75,32 @@ function currencyConvert(btc) {
     //     success: function() {
     //         console.log(round)
     //         return round
-            
+
     //     }
     // })
-    
+
     $.ajaxSetup({
         async: false
     });
-    
+
     var result;
     $.getJSON("https://api.coindesk.com/v1/bpi/currentprice/aud.json",
-    function(data) {
-        var origAmt = btc;
-        var exchange = parseInt(data.bpi.AUD.rate_float);
-        let amount = (origAmt * exchange)
-        var round = formatter.format(Math.round(amount))
-        result = round
-    });
+        function(data) {
+            var origAmt = btc;
+            var exchange = parseInt(data.bpi.AUD.rate_float);
+            let amount = (origAmt * exchange)
+            var round = formatter.format(Math.round(amount))
+            result = round
+        });
     return result
-    
+
     // $.getJSON("https://api.coindesk.com/v1/bpi/currentprice/aud.json",
     // function(data) {
     //     var origAmt = btc;
     //     var exchange = parseInt(data.bpi.AUD.rate_float);
     //     let amount = (origAmt * exchange)
     //     var round = formatter.format(Math.round(amount))
-        
+
     // })
 }
 
@@ -110,7 +109,7 @@ function tableManipulate(hash, time, btc, aud, tableID) {
     let row = tableBody.insertRow(0)
     let cell1 = row.insertCell(0)
     let cell2 = row.insertCell(1)
-    let cell3 = row.insertCell(2) 
+    let cell3 = row.insertCell(2)
     let cell4 = row.insertCell(3)
 
     cell1.outerHTML = '<th>' + hash + '</th>'
@@ -118,9 +117,9 @@ function tableManipulate(hash, time, btc, aud, tableID) {
     cell3.innerHTML = btc
     cell4.innerHTML = aud
 
-    if(tableBody.rows.length > 8){
+    if (tableBody.rows.length > 8) {
         tableBody.deleteRow(8);
-    } 
+    }
 
 }
 
@@ -135,10 +134,9 @@ blockSocket.onopen = function() {
 
 blockSocket.onmessage = function(e) {
     var blockResponse = JSON.parse(e.data);
-    var tx = blockResponse.op.out
     blockManipulate(blockResponse)
     console.log(blockResponse)
-    
+
 }
 
 function blockManipulate(data) {
@@ -162,5 +160,5 @@ blockSocket.onopen = function() {
 blockSocket.onmessage = function(e) {
     var blockResponse = JSON.parse(e.data);
     blockManipulate(blockResponse)
-    
+
 }
