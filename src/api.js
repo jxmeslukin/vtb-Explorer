@@ -8,7 +8,7 @@ var audAmtInput = document.getElementById("audAmtInput")
 let socket = new WebSocket('wss://ws.blockchain.info/inv');
 
 socket.onopen = function() {
-    alert("[open] Connection Established");
+    // alert("[open] Connection Established");
     socket.send(JSON.stringify({
         "op": "unconfirmed_sub"
     }))

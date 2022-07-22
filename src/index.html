@@ -9,11 +9,11 @@
   <link rel="stylesheet" href="index.css">
   <script src="https://kit.fontawesome.com/40b81531b5.js" crossorigin="anonymous"></script>
   
-  <script src="render.js"></script>
   <title>vtb_explorer</title>
 </head>
 
 <body>
+  <!-- Nav-Bar -->
   <div class="tabs is-centered" id="header">
     <ul>
       <li class="is-active">
@@ -42,36 +42,32 @@
       </li>
     </ul>
   </div>
+  <!-- Tile Section -->
   <section id="explorer" class="section" style="padding-top: 0.1rem;">
     <div class="tile is-ancestor">
       <div class="tile is-4 is-vertical is-parent">
         <div id="" class="tile is-child box">
-          <p class="title">Blockchain</p>
-
-          <div class="select">
-            <select>
-              <option>Bitcoin</option>
-              <option>Ethereum</option>
-            </select>
+          <p class="title">Bitcoin Explorer</p>
+          <div>
+            <!-- <img src="img/opengraph.png" class="btcImg">
+            <p><i>Bitcoin Logo</i></p> -->
+            <br>
+            <p>Bitcoin is a decentralized digital currency that can be transferred on the peer-to-peer bitcoin network. Bitcoin transactions are verified by network nodes through cryptography and recorded in a public distributed ledger called a blockchain.</p>
           </div>
-          <br>
           <div class="search">
-
           </div>
-
-
-
           <br><br><br>
         </div>
         <div class="tile is-child box">
-          <p class="title">Info</p>
-          <p id="chainData">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
-            ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas
-            non massa sem. Etiam finibus odio quis feugiat facilisis.
-          </p>
+          <p class="title">Search</p>
+          <div>
+            <input type="text" id="txSearch" class="icon-rtl" style="text-indent:25px;" placeholder="Search for any transaction info..">
+          </div>
+          
         </div>
       </div>
+
+      <!-- Transaction blocks -->
       <div class="tile is-parent">
         <div class="tile is-child box">
           <p class="title">Real-time transactions</p>
@@ -110,6 +106,8 @@
       </div>
     </div>
   </section>
+
+  <!-- About section -->
   <section class="section" id="about">
     <h1 class="title">About</h1>
     <h2 class="subtitle">
@@ -118,6 +116,7 @@
     </h2>
     <p><i>Electron is the main framework used to create this web-app.</i></p>
   </section>
+  <script src="render.js"></script>
   <script src="api.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
