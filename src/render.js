@@ -18,10 +18,6 @@ function toggleContrast() {
 //Sorts and Searches
 
 
-var input = document.getElementById('txSearch')
-input.addEventListener('keyup', function(){
-
-})
 
 
 

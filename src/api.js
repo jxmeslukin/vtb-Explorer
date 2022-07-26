@@ -2,6 +2,7 @@ var hashInput = document.getElementById("hashInput")
 var timeInput = document.getElementById("timeInput")
 var btcAmtInput = document.getElementById("btcAmtInput")
 var audAmtInput = document.getElementById("audAmtInput")
+let hashArr = [];
 
 // calling blockchain.com api to fetch real time info
 
@@ -105,6 +106,9 @@ function currencyConvert(btc) {
 }
 
 function tableManipulate(hash, time, btc, aud, tableID) {
+
+    hashArr.push(hash);
+
     var tableBody = document.getElementById(tableID);
     let row = tableBody.insertRow(0)
     let cell1 = row.insertCell(0)
@@ -145,6 +149,7 @@ function blockManipulate(data) {
     var ntx = data.x.nTx
     var size = data.x.size.toLocaleString() + " bytes";
     var date = timeConvert(data.x.time)
+
     tableManipulate(height, date, ntx, size, blockId)
 }
 
@@ -161,4 +166,43 @@ blockSocket.onmessage = function(e) {
     var blockResponse = JSON.parse(e.data);
     blockManipulate(blockResponse)
 
+}
+
+//search 
+
+var input = document.getElementById('txSearch')
+input.addEventListener('keyup', function(){
+    binarySearch(input);
+})
+
+
+function binarySearch(item) {
+    let sortArr = bubbleSort(hashArr);
+    let start = 0
+    let end = sortArr.length - 1
+    while(start <= end) {
+        let mid = Math.floor((start + end) / 2);
+        if(sortArr[mid] === item) {
+            return mid;
+        } else if (sortArr[mid] < item) {
+            start = middle + 1
+        } else {
+            end = middle - 1
+        }
+    }
+
+    return -1;
+}
+
+function bubbleSort(arr) {
+    for(i=0; i < arr.length; i++) {
+        for(j=0; j < (arr.length - i - 1); j++) {
+            if(arr[j] > arr[j+1]){
+                let temp = arr[j]
+                arr[j] = arr[j+1]
+                arr[j+1] = temp
+            }
+        }
+    }
+return arr
 }
