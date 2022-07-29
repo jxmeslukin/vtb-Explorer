@@ -1,3 +1,14 @@
+/*
+       _ __ __           _____     ___      __  ___    
+      (_) // / ____ ___ |__  /____<  /_  __/ /_<  /___ 
+     / / // /_/ __ `__ \ /_ </ ___/ / / / / //_/ / __ \
+    / /__  __/ / / / / /__/ (__  ) / /_/ / ,< / / / / /
+ __/ /  /_/ /_/ /_/ /_/____/____/_/\__,_/_/|_/_/_/ /_/ 
+/___/                                                 
+
+*/
+
+
 var hashInput = document.getElementById("hashInput")
 var timeInput = document.getElementById("timeInput")
 var btcAmtInput = document.getElementById("btcAmtInput")
@@ -15,6 +26,8 @@ socket.onopen = function() {
     }))
 }
 
+
+
 socket.onmessage = function(e) {
     var response = JSON.parse(e.data);
     var tx = response.x.out
@@ -26,10 +39,10 @@ function jsonManipulate(data) {
     var hash = arr.hash
     var time = arr.time
     var value = arr.out
-    var valLeng = value.length
+    var valLength = value.length
     var sum = 0;
 
-    for (i = 0; i < valLeng; i++) {
+    for (i = 0; i < valLength; i++) {
         sum += (value[i].value)
     }
     var btc = sum / 100000000
@@ -155,14 +168,14 @@ function blockManipulate(data) {
 
 let pingSocket = new WebSocket('wss://ws.blockchain.info/inv');
 
-blockSocket.onopen = function() {
+pingSocket.onopen = function() {
     //alert("[open] Connection Established");
-    blockSocket.send(JSON.stringify({
+    pingSocket.send(JSON.stringify({
         "op": "ping_block"
     }))
 }
 
-blockSocket.onmessage = function(e) {
+pingSocket.onmessage = function(e) {
     var blockResponse = JSON.parse(e.data);
     blockManipulate(blockResponse)
 
@@ -172,23 +185,44 @@ blockSocket.onmessage = function(e) {
 
 var input = document.getElementById('txSearch')
 input.addEventListener('keyup', function(){
-    binarySearch(input);
+    search(input);
 })
 
-
-function binarySearch(item) {
-    let sortArr = bubbleSort(hashArr);
+function search(x) {
+    var searchArr = [];
+    for(i = 0; i < hashArr.length; i++) {
+        searchArr.push(hashArr[i]);
+    }
+    let sort = bubbleSort(searchArr);
     let start = 0
-    let end = sortArr.length - 1
+    let end = sort.length - 1
+    let xVal = x.value.toLowerCase()
+    if(binarySearch(sort, xVal, start, end) == -1) {
+        console.log("Not Found")
+    } else {
+        console.log("Found") 
+    }
+}
+
+function binarySearch(arr, item, start, end) {
+    let sortArr = arr;
+    
+    console.log(sortArr);
     while(start <= end) {
-        let mid = Math.floor((start + end) / 2);
-        if(sortArr[mid] === item) {
+        let mid = start + Math.floor((end - start) / 2);
+        let res = item.localeCompare(sortArr[mid]);
+        if(res == 0) {
             return mid;
-        } else if (sortArr[mid] < item) {
-            start = middle + 1
-        } else {
-            end = middle - 1
         }
+        if(res < 0) {
+            end = mid - 1;
+        }
+        if(res > 0) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        } 
+        return -1;
     }
 
     return -1;
@@ -201,7 +235,7 @@ function bubbleSort(arr) {
                 let temp = arr[j]
                 arr[j] = arr[j+1]
                 arr[j+1] = temp
-            }
+            } 
         }
     }
 return arr
