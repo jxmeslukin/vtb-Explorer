@@ -44,7 +44,15 @@ th
   width: 100%;
 } */
 
-table {
+#txTable table {
+  table-layout: auto;
+  width: 100%;
+  display: table;
+  max-width: 500px;
+  border-collapse: collapse;
+}
+
+#blockTable table {
   table-layout: auto;
   width: 100%;
   display: table;
@@ -72,4 +80,25 @@ input[type=text] {
   height: 30%;
   width: 30%;
   padding-right: 10px;
+}
+
+/* #tBodSearch tr{
+  overflow: visible;
+  text-overflow: unset;
+  white-space: nowrap;
+  width: 100%;
+  max-width: 250px ;
+  table-layout: auto;
+} */
+
+#tBodSearch th{
+  width: 50%;
+}
+
+#tBodSearch td {
+  width: 20%;
+}
+
+table {
+  width: 75%;
 }

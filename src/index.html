@@ -59,9 +59,11 @@
           <br><br><br>
         </div>
         <div class="tile is-child box">
-          <p class="title">Search</p>
+          <p class="title">Search (Hash)</p>
           <div>
             <input type="text" id="txSearch" class="icon-rtl" style="text-indent:25px;" placeholder="Search for any transaction info..">
+            
+            <button class="button is-light" style="padding-left: 30px;">Go</button>
           </div>
           
         </div>
@@ -71,7 +73,7 @@
       <div class="tile is-parent">
         <div class="tile is-child box">
           <p class="title">Real-time transactions</p>
-          <table class="table is-fullwidth is-narrow">
+          <table id="txTable" class="table is-fullwidth is-narrow">
             <thead>
               <th>Hash</th>
               <th>Time</th>
@@ -88,7 +90,7 @@
       <div class="tile is-parent">
         <div class="tile is-child box">
           <p class="title">Real-time blocks</p>
-          <table class="table is-fullwidth is-narrow">
+          <table id="blockTable" class="table is-fullwidth is-narrow">
             <thead>
               <tr>
               <th>Height</th>
@@ -107,15 +109,33 @@
     </div>
   </section>
 
-  <!-- About section -->
-  <section class="section" id="about">
-    <h1 class="title">About</h1>
-    <h2 class="subtitle">
-      This application was created as part of a HSC project by <strong>James Lukin</strong>, updates will continue to be
-      rolled-out.
-    </h2>
-    <p><i>Electron is the main framework used to create this web-app.</i></p>
+
+
+  <section class="section" id="search">
+    <h1 class="title">Search</h1>
+    <h2 class="subtitle">Resulting hash of your search:</h2>
+    <table class="table is-fullwidth is-narrow is-bordered">
+      <thead>
+        <th>Hash</th>
+        <th>Time</th>
+        <th>Amt in Bitcoin</th>
+        <th><abbr title="Amount ($AUD)">Amt-$</abbr></th>
+      </thead>
+      <tbody id="tBodSearch" style="width: 100%;">
+      </tbody>
+    </table>
   </section>
+
+    <!-- About section -->
+    <section class="section" id="about">
+      <h1 class="title">About</h1>
+      <h2 class="subtitle">
+        This application was created as part of a HSC project by <strong>James Lukin</strong>, updates will continue to be
+        rolled-out.
+      </h2>
+      <p><i>Electron is the main framework used to create this web-app.</i></p>
+    </section>
+
   <script src="render.js"></script>
   <script src="api.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

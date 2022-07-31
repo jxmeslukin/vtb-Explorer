@@ -14,6 +14,9 @@ var timeInput = document.getElementById("timeInput")
 var btcAmtInput = document.getElementById("btcAmtInput")
 var audAmtInput = document.getElementById("audAmtInput")
 let hashArr = [];
+let timeArr = [];
+let btcArr = [];
+let audArr = [];
 
 // calling blockchain.com api to fetch real time info
 
@@ -121,6 +124,9 @@ function currencyConvert(btc) {
 function tableManipulate(hash, time, btc, aud, tableID) {
 
     hashArr.push(hash);
+    timeArr.push(time);
+    btcArr.push(btc);
+    audArr.push(aud);
 
     var tableBody = document.getElementById(tableID);
     let row = tableBody.insertRow(0)
@@ -197,37 +203,83 @@ function search(x) {
     let start = 0
     let end = sort.length - 1
     let xVal = x.value.toLowerCase()
-    if(binarySearch(sort, xVal, start, end) == -1) {
-        console.log("Not Found")
-    } else {
-        console.log("Found") 
-    }
+    binarySearch(sort, xVal, start, end);
 }
 
-function binarySearch(arr, item, start, end) {
-    let sortArr = arr;
+function binarySearch(arr, x, start, end) {
+
+    let specials = '!@#$%^&*()_+{}|:"<>?[];,./`~'
+
+    // the base condition
+    if (start > end) {return false};
+
+    // if nothing is searched, return nothing
+    if(x == "" || x.includes(specials)) {
+        return searchTable(arr, x, start, end)
+    }
+
     
-    console.log(sortArr);
-    while(start <= end) {
-        let mid = start + Math.floor((end - start) / 2);
-        let res = item.localeCompare(sortArr[mid]);
-        if(res == 0) {
-            return mid;
-        }
-        if(res < 0) {
-            end = mid - 1;
-        }
-        if(res > 0) {
-            start = mid + 1;
-        } else {
-            end = mid - 1;
-        } 
-        return -1;
+
+    // finding the middle index to distinguish item in array
+    let mid = Math.floor((start + end) / 2);
+
+    // compare mid with given key x (the company)
+    if (arr[mid].includes(x)) {
+        console.log(arr[mid])
+        searchTable(arr[mid], btcArr[mid], audArr[mid], timeArr[mid], x);
+    };
+    
+    if(!arr[mid].includes(x)) {
+        console.log('not found')
+        return searchTable(arr, x, start, end);
     }
 
-    return -1;
+    // if company at mid is greater than x,
+    // search in the left half of mid
+    if (arr[mid] > x) {
+        return binarySearch(arr, x, start, mid - 1);
+    }
+        
+    else if(arr[mid] < x) {
+        // if element at mid is smaller than x,
+        // search in the right half of mid
+        return binarySearch(arr, x, mid + 1, end);
+    } 
+    
+    
+
 }
 
+function searchTable(num, btc, aud, time, x) {
+
+    // declare variables
+    var tableBody = document.getElementById('tBodSearch');
+    let row = tableBody.insertRow(0)
+    let cell1 = row.insertCell(0)
+    let cell2 = row.insertCell(1)
+    let cell3 = row.insertCell(2)
+    let cell4 = row.insertCell(3)
+
+    // add the row to the table
+    cell1.outerHTML = '<th id='+num+'>' + num + '</th>'
+    cell2.innerHTML = time
+    cell3.innerHTML = btc
+    cell4.innerHTML = aud
+
+    
+
+    // loop through table and if the hash hasn't been searched, remove from table
+    for(var i = 0, rows; rows = tableBody.rows[i]; i++) {
+        console.log(rows.cells[0].innerHTML);
+        if(!(rows.cells[0].innerHTML.includes(x))) {
+            tableBody.deleteRow(i);
+        } if(!(rows.cells[0].innerHTML.includes(x)) && tableBody.rows.length == 1) {
+            tableBody.deleteRow(0);
+        }
+    }
+}
+
+// sort array
 function bubbleSort(arr) {
     for(i=0; i < arr.length; i++) {
         for(j=0; j < (arr.length - i - 1); j++) {
