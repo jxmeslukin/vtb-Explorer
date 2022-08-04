@@ -87,3 +87,5 @@ typings/
 
 # Electron-Forge
 out/
+
+vtbExplorer-win32-x64/
